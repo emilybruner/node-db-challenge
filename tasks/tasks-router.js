@@ -15,5 +15,17 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    const data = req.body
+
+    db.addTasks(data)
+    .then(newTask => {
+        res.status(201).json(newTask)
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({message: 'Failed to add task'})
+    })
+})
 
 module.exports = router;

@@ -2,6 +2,7 @@ const db = require('../data/db-config');
 
 module.exports = {
   getTasks,
+  addTasks
 }
 
 function getTasks() {
@@ -14,7 +15,11 @@ function getTasks() {
         'tasks.notes', 
         'tasks.done', 
         'projects.project_name',
-        'projects.description'
+        'projects.project_description',
     )
 }
 
+function addTasks(newTask) {
+    return db('tasks')
+    .insert(newTask)
+}
