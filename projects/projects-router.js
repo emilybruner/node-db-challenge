@@ -37,4 +37,22 @@ router.post('/', (req, res) => {
         res.status(500).json({message: 'Failed to add project'})
     })
 })
+
+// router.get('/:id'), (req, res) => {
+//     const {id} = req.params
+
+//     db.getById(id)
+//     .then(project => {
+//         if (project) {
+//             res.json(project)
+//         } else {
+//             res.status(404).json({message: 'No project with that id'})
+//         }
+//     })
+//     .catch(error => {
+//         console.log(error)
+//         res.status(500).json({message: 'Failed to get project'})
+//     })
+// }
+
 module.exports = router;
