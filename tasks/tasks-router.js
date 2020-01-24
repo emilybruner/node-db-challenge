@@ -6,8 +6,18 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     db.getTasks()
+    // .then(task => {
+    //     res.json(task)
+    // })
     .then(task => {
-        res.json(task)
+        task.map(tasks => {
+            if (tasks.done){
+                tasks.done = true
+            } else {
+                tasks.done = false;
+            }
+        })
+        return res.status(200).json(task)
     })
     .catch(error => {
         console.log(error)
@@ -22,6 +32,7 @@ router.post('/', (req, res) => {
     .then(newTask => {
         res.status(201).json(newTask)
     })
+
     .catch(error => {
         console.log(error);
         res.status(500).json({message: 'Failed to add task'})
